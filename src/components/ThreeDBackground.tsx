@@ -33,7 +33,7 @@ function Starfield({ count = 400 }) {
   return (
     <points ref={mesh}>
       <bufferGeometry>
-        {/* @ts-expect-error */}
+        {/* @ts-expect-error: react-three-fiber type issue, bufferAttribute does not require args for this usage */}
         <bufferAttribute
           attach="attributes-position"
           array={particles}
