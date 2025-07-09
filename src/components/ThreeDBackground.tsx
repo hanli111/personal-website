@@ -33,6 +33,7 @@ function Starfield({ count = 400 }) {
   return (
     <points ref={mesh}>
       <bufferGeometry>
+        {/* @ts-expect-error */}
         <bufferAttribute
           attach="attributes-position"
           array={particles}
