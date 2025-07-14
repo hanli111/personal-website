@@ -1,5 +1,6 @@
 "use client";
 import React, { useState } from "react";
+import emailjs from '@emailjs/browser';
 
 const Contact = () => {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
@@ -11,8 +12,22 @@ const Contact = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // TODO: Integrate EmailJS here
-    setSubmitted(true);
+    emailjs.send(
+      process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
+      process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
+      {
+        name: form.name,
+        email: form.email,
+        message: form.message,
+      },
+      process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!
+    )
+    .then(() => {
+      setSubmitted(true);
+    })
+    .catch((error) => {
+      alert('Failed to send message. Please try again.');
+    });
   };
 
   return (
