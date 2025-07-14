@@ -25,7 +25,7 @@ const Contact = () => {
     .then(() => {
       setSubmitted(true);
     })
-    .catch((error) => {
+    .catch(() => {
       alert('Failed to send message. Please try again.');
     });
   };
